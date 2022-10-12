@@ -32,3 +32,9 @@ To circumvent this limitation, whenever any changes are made to the endpoint –
 ### Updating
 
 To update the Roon Bridge to the latest available version, the installer scripts provided here will need to be run again. In-place updating via the built-in Roon mechanism will not work.
+
+### Startup Script Options
+
+In addition to simply starting Roon Bridge alongside the piCorePlayer system, the startup script that is automatically placed under "User command #1" supports the use of arguments to modify its behavior:
+* `/opt/RoonBridge/pcp-start.sh -d` disables Roon Bridge startup completely.
+* `/opt/RoonBridge/pcp-start.sh -c` enables Roon Bridge startup conditionally. Roon Bridge will start only if the SqueezeLite auto-start option in piCorePlayer is turned off.

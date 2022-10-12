@@ -34,8 +34,17 @@ mv RoonBridge ${EXTENSION_NAME}/opt
 cat <<EOF >  ${EXTENSION_NAME}/opt/RoonBridge/pcp-start.sh
 #!/bin/busybox ash
 
-if [ "\$#" -eq "1" ] && [ "\$1" == "-d" ]; then
+. /var/www/cgi-bin/pcp-functions
+
+if [ "\$#" -eq "1" ] && [ "\$1" = "-d" ]; then
   exit 0
+elif [ "\$#" -eq "1" ] && [ "\$1" = "-c" ]; then
+  . \$PCPCFG
+  if [ "\$SQUEEZELITE" = "yes" ]; then
+    exit 0
+  else
+    ROON_DATAROOT=/var/roon ROON_ID_DIR=/var/roon /opt/RoonBridge/start.sh
+  fi
 else
   ROON_DATAROOT=/var/roon ROON_ID_DIR=/var/roon /opt/RoonBridge/start.sh
 fi
