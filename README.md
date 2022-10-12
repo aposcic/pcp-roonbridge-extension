@@ -9,15 +9,15 @@ Login to piCorePlayer using ssh (default login: `tc`, default password: `piCore`
 
 To install or update, run:
 
-`wget -O - https://raw.githubusercontent.com/aposcic/pcp-roonbridge-extension/main/install-roonbridge.sh | sudo sh`
+`wget -O - https://raw.githubusercontent.com/aposcic/pcp-roonbridge-extension/main/pcp-install-roonbridge_v7hf.sh | sudo sh`
 
 To install or update the ARMv8 version, run:
 
-`wget -O - https://raw.githubusercontent.com/aposcic/pcp-roonbridge-extension/main/install-roonbridge_v8.sh | sudo sh`
+`wget -O - https://raw.githubusercontent.com/aposcic/pcp-roonbridge-extension/main/pcp-install-roonbridge_v8.sh | sudo sh`
 
 To uninstall, run:
 
-`wget -O - https://raw.githubusercontent.com/aposcic/pcp-roonbridge-extension/main/uninstall-roonbridge.sh | sudo sh`
+`wget -O - https://raw.githubusercontent.com/aposcic/pcp-roonbridge-extension/main/pcp-uninstall-roonbridge.sh | sudo sh`
 
 Reboot after installing, updating, or uninstalling. Enjoy!
 
