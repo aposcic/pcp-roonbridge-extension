@@ -34,10 +34,10 @@ mv RoonBridge ${EXTENSION_NAME}/opt
 cat <<EOF >  ${EXTENSION_NAME}/opt/RoonBridge/pcp-start.sh
 #!/bin/busybox ash
 
-if [ "$#" -eq "1" ] && [ "$1" == "-d" ]; then
+if [ "\$#" -eq "1" ] && [ "\$1" == "-d" ]; then
   exit 0
 else
-  ROON_DATAROOT=/var/roon ROON_ID_DIR=/var/roon ./start.sh
+  ROON_DATAROOT=/var/roon ROON_ID_DIR=/var/roon /opt/RoonBridge/start.sh
 fi
 
 EOF
@@ -75,25 +75,26 @@ EOF
   pcp_write_var_to_config USER_COMMAND_1 "%2fopt%2fRoonBridge%2fpcp-start.sh"
   
   # make sure we include Roon data in the piCore backup...
-  sed -i '/\/var\/roon\/RoonBridge/d' /opt/.filetool.lst
-  sed -i '/\/var\/roon\/RAATServer/d' /opt/.filetool.lst
-  echo '/var/roon/RoonBridge' >>/opt/.filetool.lst
-  echo '/var/roon/RAATServer' >>/opt/.filetool.lst
+  sed -i '/var\/roon\/RoonBridge/d' /opt/.filetool.lst
+  sed -i '/var\/roon\/RAATServer/d' /opt/.filetool.lst
+  echo 'var/roon/RoonBridge' >>/opt/.filetool.lst
+  echo 'var/roon/RAATServer' >>/opt/.filetool.lst
 
   # ... but not the log folders...
-  sed -i '/\/var\/roon\/RoonBridge\/Logs/d' /opt/.xfiletool.lst
-  sed -i '/\/var\/roon\/RAATServer\/Logs/d' /opt/.xfiletool.lst
-  echo '/var/roon/RoonBridge/Logs' >>/opt/.xfiletool.lst
-  echo '/var/roon/RAATServer/Logs' >>/opt/.xfiletool.lst
+  sed -i '/var\/roon\/RoonBridge\/Logs/d' /opt/.xfiletool.lst
+  sed -i '/var\/roon\/RAATServer\/Logs/d' /opt/.xfiletool.lst
+  echo 'var/roon/RoonBridge/Logs' >>/opt/.xfiletool.lst
+  echo 'var/roon/RAATServer/Logs' >>/opt/.xfiletool.lst
   
   # ... and definitely not the RoonBridge distribution folder
-  sed -i '/\/opt\/RoonBridge/d' /opt/.xfiletool.lst
-  echo '/opt/RoonBridge' >>/opt/.xfiletool.lst
+  sed -i '/opt\/RoonBridge/d' /opt/.xfiletool.lst
+  echo 'opt/RoonBridge' >>/opt/.xfiletool.lst
   
 else
   echo "[pcp-install-roonbridge] Updating Roon Bridge extension..."
 
   # move the extension to the extension upgrade dir
+  mkdir -p ${EXTENSION_UPGRADE_DIR}
   mv ${EXTENSION_NAME}.tcz ${EXTENSION_UPGRADE_DIR}
 fi
 
