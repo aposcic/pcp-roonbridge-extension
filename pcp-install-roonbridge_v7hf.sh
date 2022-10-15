@@ -17,7 +17,7 @@ TARGET=$(cat /etc/sysconfig/backup_device)
 echo "[pcp-install-roonbridge] Settings things up..."
 
 # load the squashfs-tools extensions
-sudo -u tc tce-load -wi squashfs-tools.tcz
+sudo -u tc tce-load -wil squashfs-tools.tcz
 
 # do everything in the /tmp directory
 cd /tmp || exit
@@ -43,10 +43,10 @@ elif [ "\$#" -eq "1" ] && [ "\$1" = "-c" ]; then
   if [ "\$SQUEEZELITE" = "yes" ]; then
     exit 0
   else
-    ROON_DATAROOT=/var/roon ROON_ID_DIR=/var/roon /opt/RoonBridge/start.sh
+    ROON_DATAROOT=/var/roon ROON_ID_DIR=/var/roon /opt/RoonBridge/start.sh >/dev/null 2>\&1
   fi
 else
-  ROON_DATAROOT=/var/roon ROON_ID_DIR=/var/roon /opt/RoonBridge/start.sh
+  ROON_DATAROOT=/var/roon ROON_ID_DIR=/var/roon /opt/RoonBridge/start.sh >/dev/null 2>\&1
 fi
 
 EOF
