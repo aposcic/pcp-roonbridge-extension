@@ -64,12 +64,6 @@ if [ ! -e /opt/RoonBridge ]; then
 
   # move the extension to the main extension dir
   mv ${EXTENSION_NAME}.tcz ${EXTENSION_DIR}
-  
-  # add dependency file
-  cat <<EOF > ${EXTENSION_DIR}/${EXTENSION_NAME}.tcz.dep
-pcp-ffmpeg.tcz
-
-EOF
 
   # add to bootlist
   sed -i "/${EXTENSION_NAME}.tcz/d" ${TCEDIR}/onboot.lst
